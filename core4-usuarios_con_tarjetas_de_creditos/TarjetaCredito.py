@@ -48,32 +48,32 @@ class TarjetaCredito:
             print(f"    Límite de crédito: ${tarjeta.limite_credito}")
             print(f"    Interes: {tarjeta.intereses*100}%")
 
-#EJERCICIO:
-print("")#Salto de linea
+# #EJERCICIO:
+# print("")#Salto de linea
 
-# Crea 3 tarjetas:
+# # Crea 3 tarjetas:
 
-hernan_cmr = TarjetaCredito(3000000,2)
-hernan_crut = TarjetaCredito(1000000, 3)
-hernan_bci = TarjetaCredito(2000000, 4, 100000)
-print("")#Salto de linea
+# hernan_cmr = TarjetaCredito(3000000,2)
+# hernan_crut = TarjetaCredito(1000000, 3)
+# hernan_bci = TarjetaCredito(2000000, 4, 100000)
+# print("")#Salto de linea
 
-# Para la primera tarjeta, haz 2 compras y un pago. Luego cobra los intereses y muestra la información de la tarjeta; todo esto en una sola línea a través de la encadenación.
+# # Para la primera tarjeta, haz 2 compras y un pago. Luego cobra los intereses y muestra la información de la tarjeta; todo esto en una sola línea a través de la encadenación.
 
-hernan_cmr.compra(800000).compra(50000).pago(850000).cobrar_interes().mostrar_info_tarjeta()
-print("")#Salto de linea
+# hernan_cmr.compra(800000).compra(50000).pago(850000).cobrar_interes().mostrar_info_tarjeta()
+# print("")#Salto de linea
 
-# Para la segunda tarjeta, haz 3 compras y 2 pagos. Luego cobra los intereses y muestra la información de la tarjeta; todo esto en una sola línea a través de la encadenación.
+# # Para la segunda tarjeta, haz 3 compras y 2 pagos. Luego cobra los intereses y muestra la información de la tarjeta; todo esto en una sola línea a través de la encadenación.
 
-hernan_crut.compra(10000).compra(25000).compra(15000).pago(20000).pago(20000).cobrar_interes().mostrar_info_tarjeta()
-print("")#Salto de linea
+# hernan_crut.compra(10000).compra(25000).compra(15000).pago(20000).pago(20000).cobrar_interes().mostrar_info_tarjeta()
+# print("")#Salto de linea
 
-#Para la tercera tarjeta, haz 5 compras y excede su límite de crédito. Luego muestra la información de la tarjeta; todo esto en una sola línea a través de la encadenación.
+# #Para la tercera tarjeta, haz 5 compras y excede su límite de crédito. Luego muestra la información de la tarjeta; todo esto en una sola línea a través de la encadenación.
 
-hernan_bci.compra(1200000).compra(200000).compra(150000).compra(200000).compra(200000).mostrar_info_tarjeta()
-print("")#Salto de linea
+# hernan_bci.compra(1200000).compra(200000).compra(150000).compra(200000).compra(200000).mostrar_info_tarjeta()
+# print("")#Salto de linea
 
-#BONUS: crea un método de clase para imprimir todas las instancias de la información de las tarjetas creadas. En el capítulo pasado te dimos algunas pistas de cómo realizarlo.
+# #BONUS: crea un método de clase para imprimir todas las instancias de la información de las tarjetas creadas. En el capítulo pasado te dimos algunas pistas de cómo realizarlo.
 
-TarjetaCredito.mostrar_todas_tarjetas()
-print("")#Salto de linea
+# TarjetaCredito.mostrar_todas_tarjetas()
+# print("")#Salto de linea
