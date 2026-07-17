@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <section class="luck">  
+        <h1>Soy el adivino del Dojo, 
+            <span class="green">{{session['nombre']}}</span> 
+            tendrá un viaje muy largo dentro de 
+            <span class="blue">{{session['numero']}}</span> 
+            años a 
+            <span class="yellow">{{session['lugar']}}</span> 
+            y estará el resto de sus dias preparando 
+            <span class="lightblue">{{session['comida']}}</span> 
+            para todas las personas que quiere.
+        </h1>
+        <h1>Cambió de profesión y ahora es 
+            <span class="orange">{{session['profesion']}}</span>
+            .
+        </h1>
+        <a href="/">¡Jugar de nuevo!</a>
+    </section>
+</body>
+</html>

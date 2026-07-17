@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+</head>
+<body>
+    <section>
+        <p>Cantidad de visitas que haz realizado: <span class="red">{{ visitas }}</span></p>
+    
+        <form action="/aumentar" method="post">
+            <button class="submit green">Visiata Doble</button>
+        </form>
+
+        <form action="/reiniciar" method="post">
+            <button class="submit blue">Reiniciar</button>
+        </form>
+
+        <form action="/aumentarCantidad" method="post">
+            <label for="cantidad">Ingrese la cantidad de visitas:</label>
+            <input type="number" name="cantidad">
+            <button class="submit green">Aumentar</button>
+        </form>
+
+        <p>Cantidad de reinicios: <span class="red">{{ reinicios }}</span></p>
+    </section>
+</body>
+</html>
