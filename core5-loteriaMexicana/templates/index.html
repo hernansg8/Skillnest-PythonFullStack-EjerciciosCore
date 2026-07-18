@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loteria</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <section>
+        <h1>Lotería Mexicana</h1>
+        <div class="tablero">
+            {% for r in range(row) %}
+                <div class="fila">
+                    {% for c in range(col) %}
+                        <div class="card {{dek[r][c].color}}">{{dek[r][c].card}}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</body>
+</html>
