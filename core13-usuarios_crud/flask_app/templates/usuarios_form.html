@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Usuario</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Crear nuevo usario</h1>
+        <a href="/usuarios">Volver</a>
+    </header>
+    <main>
+        <form action="/usuarios/save" method="POST" class="tarjeta">
+            <label>Nombre:</label>
+            <input type="text" name="nombre"><br>
+
+            <label>Apellido:</label>
+            <input type="text" name="apellido"><br>
+
+            <label>Email:</label>
+            <input type="text" name="email"><br>
+            
+            <input type="submit" value="Crear" class="btn btn-primary">
+        </form>
+    </main>
+</body>
+</html>

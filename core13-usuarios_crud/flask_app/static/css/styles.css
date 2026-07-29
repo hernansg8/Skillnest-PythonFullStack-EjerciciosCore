@@ -1,0 +1,28 @@
+header{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items:center;
+    justify-content: space-around;
+}
+main{
+    margin: 20px;
+}
+
+.tarjeta{
+    border: none;
+    border-radius: 5px;
+    background-color:salmon;
+    padding: 20px;
+}
+
+span{
+    font-weight: bolder;
+}
+
+header{
+    background-color: salmon;
+}
+
+header a{
+    color:white;
+}

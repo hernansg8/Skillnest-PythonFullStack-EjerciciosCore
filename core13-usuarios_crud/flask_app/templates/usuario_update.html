@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Editar Usuario {{user.id}}</h1>
+        <a href="/usuarios">Volver</a>
+    </header>
+    <main>
+        <form action="/usuarios/update" method="POST" class="tarjeta">
+
+            <input type="text" name="id" value="{{user.id}}" hidden>
+
+            <label>Nombre:</label>
+            <input type="text" name="nombre" value="{{user.nombre}}"><br>
+
+            <label>Apellido:</label>
+            <input type="text" name="apellido" value="{{user.apellido}}"><br>
+
+            <label>Email:</label>
+            <input type="text" name="email" value="{{user.email}}"><br>
+            
+            <input type="submit" value="Actualizar" class="btn btn-primary">
+        </form>
+    </main>
+</body>
+</html>

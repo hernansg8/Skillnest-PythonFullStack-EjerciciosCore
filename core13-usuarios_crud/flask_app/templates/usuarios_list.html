@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Usuarios</h1>
+        <a href="/usuarios/nuevo">Nuevo Usuario</a>
+    </header>
+    <main>
+        <table class="table table-dark">
+            <caption>
+                Práctica: Flask-MySQL USUARIOS CRUD
+            </caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre Completo</th>
+                    <th>E-mail</th>
+                    <th>Fecha Creacion</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in lista_usuarios %}
+                <tr>
+                    <th>{{user.id}}</th>
+                    <td>{{user.nombre}} {{user.apellido}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.created_at}}</td>
+                    <td>
+                        <a href="/usuarios/{{user.id}}">Ver</a>
+                        <a href="/usuarios/editar/{{user.id}}">Editar</a>
+                        <a href="/usuarios/borrar/{{user.id}}">Borrar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

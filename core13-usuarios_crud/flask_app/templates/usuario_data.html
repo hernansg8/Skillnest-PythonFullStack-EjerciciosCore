@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Usuario {{user.id}}</h1>
+        <a href="/usuarios">Volver</a>
+    </header>
+    <main>
+        <div class="tarjeta">
+            <p><span>Nombre Completo: </span>{{user.nombre}} {{user.apellido}}</p>
+            <p><span>E-mail: </span>{{user.email}}</p>
+            <p><span>Fecha Creación: </span>{{user.created_at}}</p>
+            <p><span>Fecha Actualización: </span>{{user.updated_at}}</p>
+        </div>
+        <div class="acciones">
+            <a href="/usuarios/editar/{{user.id}}">Editar</a>
+            <a href="/usuarios/borrar/{{user.id}}">Borrar</a>
+        </div>
+    </main>
+</body>
+</html>
