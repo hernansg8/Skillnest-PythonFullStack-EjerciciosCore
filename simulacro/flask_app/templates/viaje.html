@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viaje</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+    <header class="row">
+        <h1>Viaje</h1>
+        <a href="/dashboard" class="btn btn-primary">Inicio</a>
+        <a href="/cerrarsesion" class="btn btn-primary">Cerrar Sesión</a>
+    </header>
+    <main class="tarjeta">
+        <h1>{{viaje.destino}}</h1>
+        <p><span>Organizador: </span>{{viaje.organizador_id}}</p>
+        <p><span>Fecha Inicio: </span>{{viaje.fecha_inicio}}</p>
+        <p><span>Fecha Fin: </span>{{viaje.fecha_fin}}</p>
+        <p><span>Itinerario: </span>{{viaje.itinerario}}</p>
+        <div class="viajeros row">
+            <p><span>Viajeros: </span></p>
+            <div>
+                <ul>
+                    {% for row in viajeros %}
+                    <li>{{row.usuario_id}}</li>
+                    {% endfor %}
+                </ul>
+                {% if condicional == 'cancelar' %}
+                    <form action="/viajero/delete" method="POST">
+                        <input type="text" name="viaje_id" value="{{viaje.id}}" hidden>
+                        <input type="text" name="usuario_id" value="{{session.id_usuario}}" hidden>
+                        <input type="submit" value="Cancelar" />
+                    </form>
+                {% elif condicional == 'unirme' %}
+                    <form action="/viajero/save" method="POST">
+                        <input type="text" name="viaje_id" value="{{viaje.id}}" hidden>
+                        <input type="text" name="usuario_id" value="{{session.id_usuario}}" hidden>
+                        <input type="submit" value="Unirme!" />
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+</body>
+<script>
+    console.log("Script cargado correctamente.");
+</script>
+</html>

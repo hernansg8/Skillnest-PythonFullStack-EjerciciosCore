@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="row">
+        <section class="registro">
+            <h1>Registro</h1>
+            <form action="/registrar/save" method="POST" class="tarjeta">
+                <label>Nombre:</label>
+                <input type="text" name="nombre" minlength="2" required><br>
+
+                <label>Apellido:</label>
+                <input type="text" name="apellido" minlength="2" required><br>
+
+                <label>Email:</label>
+                <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><br>
+
+                <label>Contraseña:</label>
+                <input type="password" name="password" required><br>
+
+                <label>Conf. contraseña:</label>
+                <input type="password" name="validpassword" required><br>
+                
+                <input type="submit" value="Registrar" class="btn btn-primary mt-2">
+            </form>
+        </section>
+        <section class="inicio">
+            <h1>Inicio de Sesión</h1>
+            <form action="/iniciar/login" method="POST" class="tarjeta">
+                <label>Email:</label>
+                <input type="text" name="email"><br>
+
+                <label>Contraseña:</label>
+                <input type="password" name="password"><br>
+                
+                <input type="submit" value="Iniciar Sesión" class="btn btn-primary mt-2">
+            </form>
+        </section>
+    </main>
+</body>
+</html>

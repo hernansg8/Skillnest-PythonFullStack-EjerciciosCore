@@ -1,0 +1,45 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    margin-top: 50px;
+    padding: 20px;
+}
+
+/* Highlights green when valid */
+input[type="email"]:valid {
+  border: 2px solid green;
+}
+
+/* Highlights red only when the user types something incorrect */
+input[type="email"]:invalid:not(:placeholder-shown) {
+  border: 2px solid red;
+}
+
+.column{
+    display: flex;
+    flex-flow: column wrap;
+    
+}
+.row{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+form {
+    text-align: right;
+}
+
+.tarjeta{
+    background-color: coral;
+    border-radius: 10px;
+    width: 250px;
+    padding: 20px;
+}
+
+span{
+    font-weight: bold;
+}
