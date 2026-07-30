@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="row center">
+        <section>
+            <h1>Estudiantes de {{curso.nombre}}</h1>
+            <table style="width: 100%;">
+                <thead>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                </thead>
+                <tbody>
+                    {%  for x in estudiantes %}
+                        <tr>
+                            <td>{{x['estudiantes.nombre']}}</td>
+                            <td>{{x.apellido}}</td>
+                            <td>{{x.edad}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div style="margin-top: 20px;">
+                <a href="/cursos" >Inicio</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

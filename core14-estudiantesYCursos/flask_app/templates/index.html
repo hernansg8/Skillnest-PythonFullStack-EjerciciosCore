@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="row center">
+        <section>
+            <h1>Nuevo Curso</h1>
+            <form action="/cursos/crear" method="POST">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" placeholder="Nombre" required>
+                <button type="submit">Agregar</button>
+            </form>
+        </section>
+        <section>
+            <h1>Todos los Cursos</h1>
+            <div class="tarjeta">
+                <ul>
+                    {% for x in cursos %}
+                        <li>
+                            <a href="/cursos/{{x.id}}">{{x.nombre}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div style="margin-top: 20px;">
+                <a href="/estudiante" >Agregar Estudiante</a>
+            </div>
+            
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

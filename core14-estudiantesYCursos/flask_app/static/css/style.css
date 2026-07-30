@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    text-align: center;
+    margin-top: 50px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input, select{
+    padding: 8px;
+    margin: 5px;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.column{
+    display: flex;
+    flex-flow: column wrap;
+}
+.row{
+    display: flex;
+    flex-flow: row wrap;
+}
+.tarjeta{
+    border: 1px solid black;
+}
+section{
+    padding: 20px;
+}
+.center{
+    justify-content: center;
+}
+.grid-form {
+    display: grid;
+    grid-template-columns: max-content 200px; /* Column 1 fits text, column 2 is fixed width */
+    gap: 10px 15px;                          /* Vertical gap, Horizontal gap */
+    align-items: center;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th{
+    background-color: #0056b3;
+    color:white;
+}
