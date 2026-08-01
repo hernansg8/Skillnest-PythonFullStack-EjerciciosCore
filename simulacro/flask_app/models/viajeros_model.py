@@ -6,10 +6,11 @@ class Viajero:
     def __init__(self, data):
         self.viaje_id = data['viaje_id']
         self.usuario_id = data['usuario_id']
+        self.usuario_nombre = data['usuario_nombre']
 
     @classmethod
     def get_all(cls,data):
-        query = "SELECT * FROM viajeros WHERE viaje_id=%(id)s"
+        query = "SELECT v.viaje_id, v.usuario_id, u.nombre usuario_nombre FROM viajeros v JOIN usuarios u ON u.id = v.usuario_id WHERE viaje_id=%(id)s"
         results = connectToMySQL(cls.DB).query_db(query,data)
         viajeros = []
         for row in results:

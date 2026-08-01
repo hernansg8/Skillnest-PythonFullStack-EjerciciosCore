@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+    background-color: #42393b;
+    color:white;
     text-align: center;
     margin-top: 50px;
 }
@@ -15,7 +16,7 @@ input, select{
 }
 
 button {
-    background-color: #007BFF;
+    background-color: #90263b;
     color: white;
     border: none;
     padding: 8px 16px;
@@ -24,12 +25,22 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #6a2634;
 }
 
 ul {
     list-style: none;
     padding: 0;
+}
+
+/* Highlights green when valid */
+input[type="email"]:valid {
+  border: 2px solid green;
+}
+
+/* Highlights red only when the user types something incorrect */
+input[type="email"]:invalid:not(:placeholder-shown) {
+  border: 2px solid red;
 }
 
 .column{
@@ -40,26 +51,57 @@ ul {
     display: flex;
     flex-flow: row wrap;
 }
-.tarjeta{
-    border: 1px solid black;
-}
-section{
-    padding: 20px;
-}
 .center{
     justify-content: center;
+}
+.space-between{
+    justify-content: space-between;
+}
+.align-center{
+    align-items: center;
+}
+section{
+    margin: 20px;
 }
 .grid-form {
     display: grid;
     grid-template-columns: max-content 200px; /* Column 1 fits text, column 2 is fixed width */
     gap: 10px 15px;                          /* Vertical gap, Horizontal gap */
-    align-items: center;
+    align-items: start;
+    text-align: left;
+}
+.tarjeta{
+    background-color: #3d282d;
+    border: 2px solid #6a2634;
+    border-radius: 10px;
+    padding: 20px;
+}
+span{
+    font-weight: bold;
 }
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
 }
+.w-100{
+    width: 100%;
+}
 th{
     background-color: #0056b3;
     color:white;
+}
+.viajeros{
+    min-height: 40px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 10px;
+}
+.login-error, .register-error{
+    color: red;
+}
+.login-success, .register-success{
+    color:green;
+}
+a{
+    color:#6331d6;
 }

@@ -4,46 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viaje</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 </head>
 <body>
-    <header class="row">
-        <h1>Viaje</h1>
-        <a href="/dashboard" class="btn btn-primary">Inicio</a>
-        <a href="/cerrarsesion" class="btn btn-primary">Cerrar Sesión</a>
-    </header>
-    <main class="tarjeta">
+    <section>
+        <header class="row space-between align-center">
+            <h1>Viaje</h1>
+            <div class="row">
+                <form action="/dashboard" style="margin: 10px;">
+                    <button type="submit">Inicio</button>
+                </form>
+                <form action="/cerrarsesion" style="margin: 10px;">
+                    <button type="submit">Cerrar Sesión</button>
+                </form>
+            </div>
+        </header>
+    </section>
+    <section class="tarjeta">
         <h1>{{viaje.destino}}</h1>
-        <p><span>Organizador: </span>{{viaje.organizador_id}}</p>
-        <p><span>Fecha Inicio: </span>{{viaje.fecha_inicio}}</p>
-        <p><span>Fecha Fin: </span>{{viaje.fecha_fin}}</p>
-        <p><span>Itinerario: </span>{{viaje.itinerario}}</p>
-        <div class="viajeros row">
+        <div class="grid-form">
+            <p><span>Organizador: </span></p>
+            <p>{{viaje.organizador_nombre}}</p>
+            <p><span>Fecha Inicio: </span></p>
+            <p>{{viaje.fecha_inicio}}</p>
+            <p><span>Fecha Fin: </span></p>
+            <p>{{viaje.fecha_fin}}</p>
+            <p><span>Itinerario: </span></p>
+            <p>{{viaje.itinerario}}</p>
             <p><span>Viajeros: </span></p>
-            <div>
+            <div class="viajeros">
                 <ul>
                     {% for row in viajeros %}
-                    <li>{{row.usuario_id}}</li>
+                    <li>{{row.usuario_nombre}}</li>
                     {% endfor %}
                 </ul>
                 {% if condicional == 'cancelar' %}
                     <form action="/viajero/delete" method="POST">
                         <input type="text" name="viaje_id" value="{{viaje.id}}" hidden>
-                        <input type="text" name="usuario_id" value="{{session.id_usuario}}" hidden>
-                        <input type="submit" value="Cancelar" />
+                        <input type="text" name="usuario_id" value="{{session.usuario_id}}" hidden>
+                        <button type="submit">Cancelar</button>
                     </form>
                 {% elif condicional == 'unirme' %}
                     <form action="/viajero/save" method="POST">
                         <input type="text" name="viaje_id" value="{{viaje.id}}" hidden>
-                        <input type="text" name="usuario_id" value="{{session.id_usuario}}" hidden>
-                        <input type="submit" value="Unirme!" />
+                        <input type="text" name="usuario_id" value="{{session.usuario_id}}" hidden>
+                        <button type="submit">Unirme!</button>
                     </form>
                 {% endif %}
             </div>
         </div>
-    </main>
+    </section>
 </body>
 <script>
     console.log("Script cargado correctamente.");

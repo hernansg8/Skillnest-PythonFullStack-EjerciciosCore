@@ -4,33 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuevo Viaje</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <header class="row">
-        <h1>Nuevo Viaje</h1>
-        <a href="/dashboard" class="btn btn-primary">Inicio</a>
-        <a href="/cerrarsesion" class="btn btn-primary">Cerrar Sesión</a>
-    </header>
-    <main>
-        <form action="/nuevo/save" method="POST" class="tarjeta">
-            <label>Destino:</label>
-            <input type="text" name="destino" required><br>
+    <section>
+        <header class="row space-between align-center">
+            <h1>Nuevo Viaje</h1>
+            <div class="row">
+                <form action="/dashboard" style="margin: 10px;">
+                    <button type="submit">Inicio</button>
+                </form>
+                <form action="/cerrarsesion" style="margin: 10px;">
+                    <button type="submit">Cerrar Sesión</button>
+                </form>
+            </div>
+        </header>
+        {% with messages = get_flashed_messages(with_categories=true) %}<!-- declara una variable llamada mensajes -->
+            {% if messages %}<!-- revisa si hay algún mensaje -->
+                <ul class="flashes">
+                {% for category, message in messages %}   <!-- recorre los mensajes -->
+                    {% if category in 'error, success' %}
+                    <li class="{{category}}">{{message}}</li>  <!-- muestra cada mensaje en una etiqueta de párrafo -->
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <form action="/nuevo/save" method="POST" class="grid-form tarjeta">
+            <label for="destino">Destino:</label>
+            <input type="text" name="destino" id="destino" required>
 
-            <label>Fecha de Inicio:</label>
-            <input type="date" name="fecha_inicio" required><br>
+            <label for="fecha_inicio">Fecha de Inicio:</label>
+            <input type="date" name="fecha_inicio" id="fecha_inicio" required>
 
-            <label>Fecha de Fin:</label>
-            <input type="date" name="fecha_fin" required><br>
+            <label for="fecha_fin">Fecha de Fin:</label>
+            <input type="date" name="fecha_fin" id="fecha_fin" required>
 
-            <label>Itinerario:</label>
-            <input type="text" name="itinerario" maxlength="40" required style="height: 200px;"><br>
+            <label for="itinerario">Itinerario:</label>
+            <textarea name="itinerario" id="itinerario" rows="4" cols="10"></textarea>
 
-            <input type="text" name="organizador" value="{{session.id_usuario}}" hidden>
-            
-            <input type="submit" value="Guardar" class="btn btn-primary mt-2">
+            <input type="text" name="organizador" value="{{session.usuario_id}}" hidden>
+
+            <button type="submit">Guardar</button>
         </form>
-    </main>
+    </section>
 </body>
 </html>

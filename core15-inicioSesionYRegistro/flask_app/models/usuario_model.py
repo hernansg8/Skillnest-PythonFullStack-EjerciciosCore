@@ -4,7 +4,7 @@ import re
 
 class Usuario:
 
-    DB = "esquema_simulacro"
+    DB = "esquema_iniciosesion"
 
     def __init__(self, data):
         self.id = data['id']
@@ -40,26 +40,16 @@ class Usuario:
             return False
         return True
 
-    # Obtener todos los registros
-    @classmethod
-    def get_all(cls):
-        query = "SELECT * FROM usuarios;"
-        results = connectToMySQL(cls.DB).query_db(query)
-        usuarios = []
-        for row in results:
-            usuarios.append(cls(row))
-        return usuarios
-
     #Validar los registros:
     @staticmethod
     def validar_form(data):
         patron_letras = re.compile(r'^[^\\W\\d_]+$')
         patron_email = re.compile(r'^[\w\.-]+@[\w\.-]+\.\w+$')
         valid = True
-        if len(data['nombre'].strip())<2 or not patron_letras.match(data['nombre']):
+        if len(data['nombre'])<2 or not patron_letras.match(data['nombre']):
             flash("El nombre debe ser solo letras y tener al menos 2 caracteres.","register-error") 
             valid = False
-        if len(data['apellido'].strip())<2 or not patron_letras.match(data['apellido']):
+        if len(data['apellido'])<2 or not patron_letras.match(data['apellido']):
             flash("El apellido debe ser solo letras y tener al menos 2 caracteres.","register-error") 
             valid = False
         if data['password'] != data['validpassword']:
@@ -73,6 +63,12 @@ class Usuario:
             valid = False
         if Usuario.exist_email(data):
             flash("El correo ya se encuentra registrado.","register-error")
+            valid = False
+        if not bool(re.search(r"\d", data['password'])):
+            flash("La contraseña debe tener almenos un número.","register-error")
+            valid = False
+        if not bool(re.search(r'[A-Z]', data['password'])):
+            flash("La contraseña debe tener almenos una mayuscula.","register-error")
             valid = False
         return valid
 

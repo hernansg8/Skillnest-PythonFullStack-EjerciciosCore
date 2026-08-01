@@ -1,9 +1,9 @@
 from flask import render_template, redirect, request, session, flash
 from flask_app import app
 from flask_app.models.usuario_model import Usuario
-from flask_bcrypt import Bcrypt
+from flask_bcrypt import Bcrypt #Importamos Bcrypt
 
-bcrypt = Bcrypt(app)
+bcrypt = Bcrypt(app) 
 
 @app.route('/')
 def index():
@@ -52,7 +52,14 @@ def login_usuario():
     session['usuario_nombre'] = usuario.nombre
     session['usuario_apellido'] = usuario.apellido
     session['usuario_email'] = usuario.email
-    return redirect('/dashboard')
+    return redirect('/home')
+
+@app.route('/home')
+def home():
+    if 'usuario_id' in session:
+        return render_template('home.html')
+    else:
+        return redirect('/')
 
 @app.route('/cerrarsesion')
 def close_login():

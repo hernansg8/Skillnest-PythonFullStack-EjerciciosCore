@@ -4,17 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <header class="row">
-        <h1>Bienvenid@ {{session.nombre_usuario}}</h1>
-        <a href="/nuevo" class="btn btn-primary">Organizar Viaje</a>
-        <a href="/cerrarsesion" class="btn btn-primary">Cerrar Sesión</a>
-    </header>
-    <main>
-        <table class="table table-dark mt-5">
+    <section>
+        <header class="row space-between align-center">
+            <h1>Bienvenid@ {{session.usuario_nombre}}</h1>
+            <div class="row">
+                <form action="/nuevo" style="margin: 10px;">
+                    <button type="submit">Organizar Viaje</button>
+                </form>
+                <form action="/cerrarsesion" style="margin: 10px;">
+                    <button type="submit">Cerrar Sesión</button>
+                </form>
+            </div>
+        </header>
+        {% with messages = get_flashed_messages(with_categories=true) %}<!-- declara una variable llamada mensajes -->
+            {% if messages %}<!-- revisa si hay algún mensaje -->
+                <ul class="flashes">
+                {% for category, message in messages %}   <!-- recorre los mensajes -->
+                    {% if category in 'error, success' %}
+                    <li class="{{category}}">{{message}}</li>  <!-- muestra cada mensaje en una etiqueta de párrafo -->
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <table class="w-100">
             <thead>
                 <tr>
                     <th>Destino</th>
@@ -27,19 +43,21 @@
             <tbody>
                 {% for viaje in viajes %}
                 <tr>
-                    <th>{{viaje.destino}}</th>
-                    <td>{{viaje.organizador_id}}</td>
+                    <td>{{viaje.destino}}</td>
+                    <td>{{viaje.organizador_nombre}}</td>
                     <td>{{viaje.fecha_inicio}}</td>
                     <td>{{viaje.fecha_fin}}</td>
                     <td>
                         <a href="/ver/{{viaje.id}}">Ver</a>
+                        {% if viaje.organizador_id == session.usuario_id %}
                         <a href="/editar/{{viaje.id}}">Editar</a>
                         <a href="/dashboard/borrar/{{viaje.id}}">Borrar</a>
+                        {% endif %}
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-    </main>
+    </section>
 </body>
 </html>
