@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="row center">
+        <section>
+            <h1>Registro</h1>
+            <form action="/registrar/save" method="POST" class="grid-form tarjeta">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" required>
+
+                <label for="apellido">Apellido:</label>
+                <input type="text" name="apellido" id="apellido" required>
+
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required> 
+
+                <label for="password">Contraseña:</label>
+                <input type="password" name="password" id="password" required>
+
+                <label for="validpassword">Conf. contraseña:</label>
+                <input type="password" name="validpassword" id="validpassword" required>
+                
+                <button type="submit">Registrar</button>
+            </form>
+            <div class="error">
+                {% with messages = get_flashed_messages(with_categories=true) %}<!-- declara una variable llamada mensajes -->
+                    {% if messages %}<!-- revisa si hay algún mensaje -->
+                        <ul class="flashes">
+                        {% for category, message in messages %}   <!-- recorre los mensajes -->
+                            {% if category in 'register-error, register-success,' %}
+                            <li class="{{category}}">{{message}}</li>  <!-- muestra cada mensaje en una etiqueta de párrafo -->
+                            {% endif %}
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </section>
+        <section>
+            <h1>Inicio de Sesión</h1>
+            <form action="/iniciar/login" method="POST" class="grid-form tarjeta">
+                <label for="email-login">Email:</label>
+                <input type="email" name="email" id="email-login" required>
+
+                <label for="password-login">Contraseña:</label>
+                <input type="password" name="password" id="password-login" required>
+                
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+            <div class="error">
+                {% with messages = get_flashed_messages(with_categories=true) %}<!-- declara una variable llamada mensajes -->
+                    {% if messages %}<!-- revisa si hay algún mensaje -->
+                        <ul class="flashes">
+                        {% for category, message in messages %}   <!-- recorre los mensajes -->
+                            {% if category in 'login-error, login-success' %}
+                            <li class="{{category}}">{{message}}</li>  <!-- muestra cada mensaje en una etiqueta de párrafo -->
+                            {% endif %}
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+

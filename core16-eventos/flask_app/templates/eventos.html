@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <section>
+        <header class="row space-between align-center">
+            <h1>Bienvenid@, {{session.usuario_nombre}} {{session.usuario_apellido}}</h1>
+            <div class="row">
+                <form action="/nuevo" style="margin: 10px;">
+                    <button type="submit">Crear Evento</button>
+                </form>
+                <form action="/cerrarsesion" style="margin: 10px;">
+                    <button type="submit">Cerrar Sesión</button>
+                </form>
+            </div>
+        </header>
+        {% with messages = get_flashed_messages(with_categories=true) %}<!-- declara una variable llamada mensajes -->
+            {% if messages %}<!-- revisa si hay algún mensaje -->
+                <ul class="flashes">
+                {% for category, message in messages %}   <!-- recorre los mensajes -->
+                    {% if category in 'error, success' %}
+                    <li class="{{category}}">{{message}}</li>  <!-- muestra cada mensaje en una etiqueta de párrafo -->
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <table class="w-100">
+            <thead>
+                <tr>
+                    <th>Evento</th>
+                    <th>Ubicación</th>
+                    <th>Fecha</th>
+                    <th>Publicado por</th>
+                    <th>Fecha de publicación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in eventos %}
+                <tr>
+                    <td>{{row.nombre_evento}}</td>
+                    <td>{{row.ubicacion}}</td>
+                    <td>{{row.fecha}}</td>
+                    <td>{{row.nombre}}</td>
+                    <td>{{row.created_at}}</td>
+                    <td>
+                        <a href="/ver/{{row.id}}">Ver</a>
+                        {% if row.usuario_id == session.usuario_id %}
+                        <a href="/editar/{{row.id}}">Editar</a>
+                        <a href="/eventos/borrar/{{row.id}}">Borrar</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>
