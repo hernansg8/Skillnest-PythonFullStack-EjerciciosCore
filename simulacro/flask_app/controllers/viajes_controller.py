@@ -53,6 +53,8 @@ def editar(id):
         }
         #Obtener datos del viaje:
         viaje = Viaje.get_one(data)
+        if viaje is None:
+            return redirect('/dashboard')
         return render_template("editar_viaje.html", viaje = viaje)
 
 @app.route('/editar/save', methods=['POST'])
@@ -98,6 +100,8 @@ def ver_viaje(id):
         }
         #Obtener datos del viaje
         viaje = Viaje.get_one(data)
+        if viaje is None:
+            return redirect('/dashboard')
         #Obtener viajeros que se han unido:
         viajeros = Viajero.get_all(data)
         #Condicional para saber si puede puede o nó unirse:

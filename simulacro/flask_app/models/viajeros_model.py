@@ -12,10 +12,11 @@ class Viajero:
     def get_all(cls,data):
         query = "SELECT v.viaje_id, v.usuario_id, u.nombre usuario_nombre FROM viajeros v JOIN usuarios u ON u.id = v.usuario_id WHERE viaje_id=%(id)s"
         results = connectToMySQL(cls.DB).query_db(query,data)
-        viajeros = []
-        for row in results:
-            viajeros.append(cls(row))
-        return viajeros
+        items = []
+        if results:
+            for row in results:
+                items.append(cls(row))
+        return items
 
     @classmethod
     def save(cls, data):

@@ -25,10 +25,11 @@ class Viaje:
                 " JOIN usuarios u ON u.id = v.organizador_id" \
                 " WHERE fecha_inicio >= current_date() ORDER BY fecha_inicio ASC;"
         results = connectToMySQL(cls.DB).query_db(query)
-        viajes = []
-        for row in results:
-            viajes.append(cls(row))
-        return viajes
+        items = []
+        if results:
+            for row in results:
+                items.append(cls(row))
+        return items
 
     @classmethod
     def save(cls, data):
@@ -41,9 +42,11 @@ class Viaje:
                 " v.organizador_id, v.created_at, v.updated_at, u.nombre organizador_nombre" \
                 " FROM viajes v" \
                 " JOIN usuarios u ON u.id = v.organizador_id WHERE v.id = %(id)s ;"
-        resultados = connectToMySQL(cls.DB).query_db(query,data)
-        for row in resultados:
-            return cls(row)
+        results = connectToMySQL(cls.DB).query_db(query,data)
+        if not results:
+            return None
+        else:
+            return (cls(results[0]))
 
     @classmethod
     def update(cls,data):

@@ -26,10 +26,10 @@ class Usuario:
     def login(cls,data):
         query = "SELECT * FROM usuarios WHERE email = %(email)s"
         results = connectToMySQL(cls.DB).query_db(query,data)
-        if len(results) == 1:
-            return cls(results[0])
-        else:
+        if not results:
             return False
+        else:
+            return (cls(results[0]))
 
     # Encontrar Email
     @classmethod
