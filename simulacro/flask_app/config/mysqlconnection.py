@@ -1,11 +1,16 @@
+import os
 import pymysql.cursors
+from dotenv import load_dotenv
+
+load_dotenv() # lee el archivo .env cuando trabajas en local
 
 class MySQLConnection:
     def __init__(self, db):
         connection = pymysql.connect(
-            host='localhost',
-            user='root',  # Cambia estos valores según tu entorno
-            password='root',
+            host=os.environ.get('DB_HOST'),
+            port=int(os.environ.get('DB_PORT', 3306)),
+            user=os.environ.get('DB_USER'),
+            password=os.environ.get('DB_PASSWORD'),
             db=db,
             charset='utf8mb4',
             cursorclass=pymysql.cursors.DictCursor,

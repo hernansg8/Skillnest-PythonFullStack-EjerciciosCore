@@ -1,43 +1,98 @@
-/*BASIC STYLE:::::::::::::::::::::::::::::::::::::::::::::::::*/
+/*SELECTORS::::::::::::::::::::::::::::::::::::::*/
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #42393b;
-    color:white;
-    text-align: center;
-    margin-top: 50px;
+    color:#f0f6fc;
+    /* text-align: center; */
+    font-size: 18px;
+}
+
+main{
+    width: 80%;
+    min-width: 800px;
+    justify-self: center;
+    justify-content: center;
+}
+
+header{
+    padding: 40px 20px;
+}
+
+section{
+    padding: 20px;
 }
 
 form {
-    margin-bottom: 20px;
+    padding: 20px;
 }
 
 input, select{
     padding: 8px;
-    margin: 5px;
+    margin: 8px 0px;
+    font-size: 1rem;
+    background-color: #f0f6fc;
 }
 
 button {
-    background-color: #90263b;
+    background-color: #bc2c49;
     color: white;
     border: none;
     padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 1.2rem;
 }
 
 button:hover {
     background-color: #6a2634;
 }
 
-ul {
+ul{
     list-style: none;
-    padding: 0;
 }
 
-/*NEW STYLE:::::::::::::::::::::::::::::::::::::::::::::::::*/
+li {
+    padding: 8px;
+}
+
+span{
+    font-weight: bold;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th{
+    background-color: #bc2c49;
+    color:white;
+}
+
+td{
+    background-color: #3d282d;
+    font-weight: lighter;
+    text-align: center;
+}
+
+a{
+    color:#02c0a4;
+    font-size: 1.2rem;
+    padding-left: 8px;
+}
+
+p, h3{
+    padding: 8px;
+}
+/*CLASS:::::::::::::::::::::::::::*/
 .column{
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
 }
 .row{
     display: flex;
@@ -52,8 +107,14 @@ ul {
 .align-center{
     align-items: center;
 }
-section{
-    margin: 20px;
+.fit-end{
+    align-self: flex-end;
+}
+.w-100{
+    width: 100%;
+}
+.h-100{
+    height: 100%;
 }
 .grid-form {
     display: grid;
@@ -64,27 +125,8 @@ section{
 }
 .tarjeta{
     background-color: #3d282d;
-    border: 2px solid #6a2634;
+    border: 2px solid #bc2c49;
     border-radius: 5px;
-    padding: 20px;
-}
-span{
-    font-weight: bold;
-}
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-th{
-    background-color: #90263b;
-    color:white;
-}
-td{
-    background-color: #3d282d;
-    font-weight: lighter;
-}
-.w-100{
-    width: 100%;
 }
 .login-error, .register-error, .error{
     color: rgb(255, 37, 37);
@@ -92,8 +134,36 @@ td{
 .login-success, .register-success, .success{
     color:rgb(9, 193, 9);
 }
-a{
-    color:#6b35e7;
+.color-secundary{
+    background-color: #009e86;
+}
+.color-secundary:hover {
+    background-color: #1c4f4a !important;
+}
+.scroll-zone{
+    flex: 1;
+    overflow: auto;
+}
+.cursive{
+    font-style: italic;
+}
+.message{
+    background-color: none;
+    border: 2px solid #eeeeee;
+    border-radius: 5px;
+    margin: 16px;
+    padding: 16px;
+    text-align: center;
+}
+.danger{
+    color:#db2436;
+    background-color: #42393b;
+    border: 2px solid #db2436;
+}
+.danger:hover{
+    color:white;
+    background-color: #db2436;
+    border: 2px solid #db2436;
 }
 .viajeros{
     min-height: 40px;

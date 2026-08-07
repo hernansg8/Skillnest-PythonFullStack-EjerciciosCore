@@ -19,17 +19,21 @@
                 </form>
             </div>
         </header>
+        
         {% with messages = get_flashed_messages(with_categories=true) %}<!-- declara una variable llamada mensajes -->
             {% if messages %}<!-- revisa si hay algún mensaje -->
-                <ul class="flashes">
-                {% for category, message in messages %}   <!-- recorre los mensajes -->
-                    {% if category in 'error, success' %}
-                    <li class="{{category}}">{{message}}</li>  <!-- muestra cada mensaje en una etiqueta de párrafo -->
-                    {% endif %}
-                {% endfor %}
-                </ul>
+                <div class="message">
+                    <ul class="flashes">
+                    {% for category, message in messages %}   <!-- recorre los mensajes -->
+                        {% if category in ('error, success') %}
+                        <li class="{{category}}">{{message}}</li>  <!-- muestra cada mensaje en una etiqueta de párrafo -->
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                </div>
             {% endif %}
         {% endwith %}
+        
         <table class="w-100">
             <thead>
                 <tr>

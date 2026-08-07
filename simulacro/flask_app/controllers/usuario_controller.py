@@ -41,11 +41,11 @@ def login_usuario():
     #Comprobar que exista:
     usuario = Usuario.login(data)
     if not usuario:
-        flash('Correo no registrado.','login-error')
+        flash('Correo no registrado.','error')
         return redirect('/')
     #Comprobar password:
     if not bcrypt.check_password_hash(usuario.password,request.form['password']):
-        flash('Contraseña incorrecta.','login-error')
+        flash('Contraseña incorrecta.','error')
         return redirect('/')
     #Sesión iniciada:
     session['usuario_id'] = usuario.id

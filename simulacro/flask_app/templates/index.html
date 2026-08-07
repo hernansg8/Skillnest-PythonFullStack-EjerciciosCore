@@ -7,9 +7,35 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <main class="row center">
-        <section>
-            <h1>Registro</h1>
+    <main class="row">
+        <section class="column align-center">
+            <header>
+                <h1>Registro</h1>
+            </header>
+
+            {% with messages = get_flashed_messages(category_filter=['register-error']) %}<!-- declara una variable llamada mensajes -->
+                {% if messages %}<!-- revisa si hay algún mensaje -->
+                    <div class="message">
+                        <ul class="flashes">
+                        {% for message in messages %}   <!-- recorre los mensajes -->
+                            <li class="register-error">{{message}}</li>  <!-- muestra cada mensaje en una etiqueta de párrafo -->
+                        {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endwith %}
+            {% with messages = get_flashed_messages(category_filter=['register-success']) %}<!-- declara una variable llamada mensajes -->
+                {% if messages %}<!-- revisa si hay algún mensaje -->
+                    <div class="message">
+                        <ul class="flashes">
+                        {% for message in messages %}   <!-- recorre los mensajes -->
+                            <li class="register-success">{{message}}</li>  <!-- muestra cada mensaje en una etiqueta de párrafo -->
+                        {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endwith %}
+
             <form action="/registrar/save" method="POST" class="grid-form tarjeta">
                 <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" id="nombre" required>
@@ -28,22 +54,24 @@
                 
                 <button type="submit">Registrar</button>
             </form>
-            <div class="error">
-                {% with messages = get_flashed_messages(with_categories=true) %}<!-- declara una variable llamada mensajes -->
-                    {% if messages %}<!-- revisa si hay algún mensaje -->
+        </section>
+        <section class="column align-center">
+            <header>
+                <h1>Inicio de Sesión</h1>
+            </header>
+
+            {% with messages = get_flashed_messages(category_filter=['error']) %}<!-- declara una variable llamada mensajes -->
+                {% if messages %}<!-- revisa si hay algún mensaje -->
+                    <div class="message">
                         <ul class="flashes">
-                        {% for category, message in messages %}   <!-- recorre los mensajes -->
-                            {% if category in 'register-error, register-success,' %}
-                            <li class="{{category}}">{{message}}</li>  <!-- muestra cada mensaje en una etiqueta de párrafo -->
-                            {% endif %}
+                        {% for message in messages %}   <!-- recorre los mensajes -->
+                            <li class="error">{{message}}</li>  <!-- muestra cada mensaje en una etiqueta de párrafo -->
                         {% endfor %}
                         </ul>
-                    {% endif %}
-                {% endwith %}
-            </div>
-        </section>
-        <section>
-            <h1>Inicio de Sesión</h1>
+                    </div>
+                {% endif %}
+            {% endwith %}
+
             <form action="/iniciar/login" method="POST" class="grid-form tarjeta">
                 <label for="email-login">Email:</label>
                 <input type="email" name="email" id="email-login" required>
@@ -53,19 +81,6 @@
                 
                 <button type="submit">Iniciar Sesión</button>
             </form>
-            <div class="error">
-                {% with messages = get_flashed_messages(with_categories=true) %}<!-- declara una variable llamada mensajes -->
-                    {% if messages %}<!-- revisa si hay algún mensaje -->
-                        <ul class="flashes">
-                        {% for category, message in messages %}   <!-- recorre los mensajes -->
-                            {% if category in 'login-error, login-success' %}
-                            <li class="{{category}}">{{message}}</li>  <!-- muestra cada mensaje en una etiqueta de párrafo -->
-                            {% endif %}
-                        {% endfor %}
-                        </ul>
-                    {% endif %}
-                {% endwith %}
-            </div>
         </section>
     </main>
 </body>
